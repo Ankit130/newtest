@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+	<div class="content-section">
+		<form method="POST" action=''>
+			<br>
+			<fieldset class="form-group">
+				<legend class="border-bottom mb-4">locality Name with zips</legend>
+				<div class="form-group">
+				<table class="table table-striped">
+		            <thead>
+		                <th>Locality</th>
+		                <th>zips</th>
+		            </thead>
+		            <tbody>
+		                {% for group in groups %}
+		                    <tr>
+		                    	<td>{{ group }}</td>
+		                    	<td>{{ groups[group] }}</td>
+		                    </tr>
+		                {% endfor %}
+		            </tbody>
+		        </table>
+				</div>
+				
+				<div class="form-group">
+					<label for="localityname"  >Locality Name</label>
+					<input type ="text" class='form-control' id='localityname' name='localityname'>
+				</div>
+				<div class="form-group">
+					<label for="zips"  >Zip values</label>
+					<input type ="text" class='form-control' id='zips' name='zips'>
+				</div>
+				<div class="form-group">
+					<input type ="submit" name="action" value="add" class="btn btn-outline-info">
+				</div>
+				
+
+			</fieldset>
+		</form>
+	</div>
+</div>
+
+{% endblock content%}

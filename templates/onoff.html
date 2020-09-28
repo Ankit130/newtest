@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+	<div class="content-section">
+		<form method="POST" action=''>
+			{{ onoff.hidden_tag()}}
+			<br>
+			<fieldset class="form-group">
+				<legend class="border-bottom mb-1">Automatic Job accept</legend>
+				<div class="form-group">
+					{{onoff.on_or_off(class="form-control-label")}}
+				</div>
+				<div class="form-group">
+					{{onoff.submit(class="btn btn-outline-info")}}
+				</div>
+				<div class="form-group">
+					<label class='form-control'>Currently Automatically job selection is - {{ selected }}</label>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+</div>
+
+
+{% endblock content%}

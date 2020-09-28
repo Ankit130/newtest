@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+	<div class="content-section">
+		<form method="POST" action=''>
+			<br>
+			<fieldset class="form-group">
+				<legend class="border-bottom mb-4">Maximum Price Threshold</legend>
+				<div class="form-group">
+					<label for="price" >Price</label>
+					<input type ="number" class='form-control' id='price' name='price'>
+				</div>
+				<div class="form-group">
+					<input type ="submit" name="action" value="Submit" class="btn btn-outline-info">
+				</div>
+				<div class ="form-group">
+					<label class='form-control'>Selected locality - {{ loc }}</label>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+</div>
+
+{% endblock content%}
