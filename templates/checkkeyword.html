@@ -6,6 +6,18 @@
 		<form method="POST" action=''>
 			<br>
 			<fieldset class="form-group">
+				<legend class="border-bottom mb-4">Use Emails subject keyword Filter?</legend>
+				<div class="form-group">
+						  <input class="form-control-label" type="radio" name="optradio" value='YES' checked> Yes
+						  <br>					
+						  <input class="form-control-label" type="radio" name="optradio" value='NO'> No
+				</div>
+				<div class="form-group">
+						<input type ="submit" name="action" value="Submit" class="btn btn-outline-info">
+				</div>
+				<div class ="form-group">
+					<label class='form-control'>Using Subject keyword Filter - {{ subkey }}</label>
+				</div>
 				<legend class="border-bottom mb-4">Check Following keywords in Emails subject</legend>
 				<div class="form-group">
 				<select class="form-control" name="listitem">
@@ -23,6 +35,18 @@
 				</div>
 				<div class="form-group">
 					<input type ="submit" name="action" value="Add" class="btn btn-outline-info">
+				</div>
+				<legend class="border-bottom mb-4">Use Sender Emails keyword Filter?</legend>
+				<div class="form-group">
+						  <input class="form-control-label" type="radio" name="optradio1" value='YES' checked> Yes
+						  <br>					
+						  <input class="form-control-label" type="radio" name="optradio1" value='NO'> No
+				</div>
+				<div class="form-group">
+						<input type ="submit" name="action" value="submit" class="btn btn-outline-info">
+				</div>
+				<div class ="form-group">
+					<label class='form-control'>Using Sender Emails keyword Filter - {{ emkey }}</label>
 				</div>
 				<legend class="border-bottom mb-4">Job oppurtunity Email </legend>
 				<div class="form-group">

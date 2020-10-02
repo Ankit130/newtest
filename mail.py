@@ -12,6 +12,7 @@ def getcurtime():
     day=datetime.today().strftime('%A')
     ctime=datetime.datetime.now()
     return day,ctime
+    
 def acceptjob(link):
     r=requests.get(link)
     Soup=soup(r.text,'html.parser')

@@ -122,15 +122,21 @@ def zipgroupadd():
 def selectzip():
 	if request.method=='POST':
 		data=request.form.to_dict(flat=False)
+		print(data)
 		if data['action'][0] == 'select':
 			try:
-				item=data['listitem'][0]
+				item=data['hello']
 			except:
-				item=''
+				item=[]
 			if(item=='None'):
-				item=''
+				item=[]
 			setloc(item)
 			chng()
+		elif data['action'][0] == 'Submit':
+			fg=data['optradio'][0]
+			if(fg=='NO'):
+				setloc([fg])
+				chng()
 	return render_template('zipselect.html',title='Select locality',data=getzipgroups(),loc=getloc())
 
 @app.route('/emailkeyword',methods=['GET','POST'])
@@ -167,9 +173,16 @@ def checkkeyword():
 			else:
 				addemail(data['email'][0])
 				chng()
-			
+		if data['action'][0]=='Submit':
+			fg=data['optradio'][0]
+			setsubkey(fg)
+			chng()
+		if data['action'][0]=='submit':
+			fg=data['optradio1'][0]
+			setemkey(fg)
+			chng()
 
-	return render_template('checkkeyword.html',title='Email subject keywords',data=getkeywords(),email=getemail())
+	return render_template('checkkeyword.html',title='Email subject keywords',data=getkeywords(),email=getemail(),subkey=getsubkey(),emkey=getemkey())
 
 
 @app.route('/emailalert',methods=['GET','POST'])
@@ -207,6 +220,74 @@ def price():
 		except:
 			flash('please enter correct amount')
 	return render_template('price.html',title='Price Setting Page',loc=chprice())
+
+@app.route('/joblinktext',methods=['GET','POST'])
+def joblinktext():
+	if request.method=='POST':
+		data=request.form.to_dict(flat=False)
+		print(data)
+		if(data['action'][0]=='Submit'):
+			fg=data['optradio'][0]
+			setjoblinktext(fg)
+			chng()
+		elif(data['action'][0]=='Add'):
+			fg=data['keyword'][0]
+			setjoblinktextkey(fg)
+			chng()
+		elif(data['action'][0]=='Delete'):
+			try:
+				if(data['listitem'][0]==''):
+					flash('please select keyword from list','error')
+				else:
+					deljoblinktextkey(data['listitem'][0])
+					chng()
+			except:
+				flash('please select keyword from list','error')
+	return render_template('joblinktext.html',title='Job Link keyword',joblinktext=getjoblinktext(),data=getjoblinktextkey())
+
+@app.route('/jobimagelink',methods=['GET','POST'])
+def jobimagetext():
+	if request.method=='POST':
+		data=request.form.to_dict(flat=False)
+		print(data)
+		if(data['action'][0]=='Submit'):
+			fg=data['optradio'][0]
+			setjobimagetext(fg)
+			chng()
+		elif(data['action'][0]=='Add'):
+			fg=data['keyword'][0]
+			setjobimagetextkey(fg)
+			chng()
+		elif(data['action'][0]=='Delete'):
+			try:
+				if(data['listitem'][0]==''):
+					flash('please select keyword from list','error')
+				else:
+					deljobimagetextkey(data['listitem'][0])
+					chng()
+			except:
+				flash('please select keyword from list','error')
+	return render_template('jobimagetext.html',title='Job Image Text keyword',joblinktext=getjobimagetext(),data=getjobimagetextkey())
+
+@app.route('/jobaccept',methods=['GET','POST'])
+def jobaccept():
+	if request.method=='POST':
+		data=request.form.to_dict(flat=False)
+		if(data['action'][0]=='Add'):
+			fg=data['keyword'][0]
+			setjobacceptkey(fg)
+			chng()
+		elif(data['action'][0]=='Delete'):
+			try:
+				if(data['listitem'][0]==''):
+					flash('please select keyword from list','error')
+				else:
+					deljobacceptkey(data['listitem'][0])
+					chng()
+			except:
+				flash('please select keyword from list','error')
+	return render_template('jobaccept.html',title='Job Accepted keyword',data=getjobacceptkey())
+
 
 if __name__ == "__main__": 
         app.run() 

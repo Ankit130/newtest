@@ -30,6 +30,8 @@ def getzipgroups():
 	with open('zipsgroup.txt','r') as f:
 		data=f.readlines()
 	for d in data:
+		if(d.strip()=='NO'):
+			continue
 		key=d.split('=')[0]
 		vals=d.replace('\n','').split('=')[1]
 		groups[key]=vals
@@ -41,18 +43,37 @@ def addzip(val):
 
 def getloc():
 	with open('selectedlocal.txt','r') as f:
-		d=f.read()
+		d=f.read().replace('||',',')
 	return d
 
 def setloc(val):
 	with open('selectedlocal.txt','w') as f:
-		f.write(val)
+		f.write('||'.join(val))
 
 def getkeywords():
 	with open('keywords.txt','r') as f:
 		data=f.read().split('|||')
 	if(data==['']):
 		return []
+	return data
+
+
+def setsubkey(val):
+	with open('subkey.txt','w') as f:
+		f.write(val)
+
+def getsubkey():
+	with open('subkey.txt','r') as f:
+		data=f.read()
+	return data
+
+def setemkey(val):
+	with open('emkey.txt','w') as f:
+		f.write(val)
+
+def getemkey():
+	with open('emkey.txt','r') as f:
+		data=f.read()
 	return data
 
 def deletekeyword(key):
@@ -214,3 +235,102 @@ def ischng():
 		time.sleep(1)
 		return ischng()
 
+
+
+def setjoblinktext(val):
+	with open('joblinktext.txt','w') as f:
+		f.write(val)
+
+def getjoblinktext():
+	with open('joblinktext.txt','r') as f:
+		data=f.read()
+	return data
+
+def getjoblinktextkey():
+	with open('joblinkkeyword.txt','r') as f:
+		data=f.readlines()
+	links=[]
+	for d in data:
+		if(d.strip()==''):
+			continue
+		links.append(d.strip())
+	return links
+
+def setjoblinktextkey(val):
+	links=getjoblinktextkey()
+	links.append(val)
+	with open('joblinkkeyword.txt','w') as f:
+		f.write('\n'.join(links))
+
+def deljoblinktextkey(val):
+	data=getjoblinktextkey()
+	with open('joblinkkeyword.txt','w') as f:
+		for d in data:
+			print(d)
+			if(val.strip()==d.strip()):
+				continue
+			else:
+				f.write(d+'\n')
+
+def setjobimagetext(val):
+	with open('joblinktextkey.txt','w') as f:
+		f.write(val)
+
+def getjobimagetext():
+	with open('joblinktextkey.txt','r') as f:
+		data=f.read()
+	return data
+
+def getjobimagetextkey():
+	with open('jobimagetext.txt','r') as f:
+		data=f.readlines()
+	links=[]
+	for d in data:
+		if(d.strip()==''):
+			continue
+		links.append(d.strip())
+	return links
+
+def setjobimagetextkey(val):
+	links=getjobimagetextkey()
+	links.append(val)
+	with open('jobimagetext.txt','w') as f:
+		f.write('\n'.join(links))
+
+def deljobimagetextkey(val):
+	data=getjobimagetextkey()
+	print(data)
+	with open('jobimagetext.txt','w') as f:
+		for d in data:
+			print(d)
+			if(val.strip()==d.strip()):
+				continue
+			else:
+				f.write(d+'\n')
+
+def getjobacceptkey():
+	with open('jobaccept.txt','r') as f:
+		data=f.readlines()
+	links=[]
+	for d in data:
+		if(d.strip()==''):
+			continue
+		links.append(d.strip())
+	return links
+
+def setjobacceptkey(val):
+	links=getjobacceptkey()
+	links.append(val)
+	with open('jobaccept.txt','w') as f:
+		f.write('\n'.join(links))
+
+def deljobacceptkey(val):
+	data=getjobacceptkey()
+	print(data)
+	with open('jobaccept.txt','w') as f:
+		for d in data:
+			print(d)
+			if(val.strip()==d.strip()):
+				continue
+			else:
+				f.write(d+'\n')
