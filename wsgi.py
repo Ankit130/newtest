@@ -8,7 +8,7 @@ app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
 
 @app.route('/',methods=['GET','POST'])
 def home():
-	return render_template('home.html',title='Console Page')
+	return render_template('home.html',title='Console Page',head='Console Control')
 
 
 @app.route('/emailpass',methods=['GET','POST'])
@@ -33,7 +33,7 @@ def hello():
 			except:
 				message='Please Provide Every detail'
 				flash(message,'failure')
-	return render_template('emailpass.html',title='change email and password',email_pass=getcurcred())
+	return render_template('emailpass.html',head='Email Credentials',title='change email and password',email_pass=getcurcred())
 
 
 
@@ -46,7 +46,7 @@ def onoff():
 		on=data['on_or_off'][0]
 		setonoff(on)
 		chng()
-	return render_template('onoff.html',title='Automatic ON/OFF', onoff=form,selected=getonof())
+	return render_template('onoff.html',title='Automatic ON/OFF', onoff=form,selected=getonof(),head='Bot on/off')
 
 
 @app.route('/timeframe',methods=['GET','POST'])
@@ -86,7 +86,7 @@ def timeFrame():
 
 		
 			
-	return render_template('timeFrame.html',title='Change Time Frame',data=gettime(),days=['Monday','Tuesday','Wednesday','Thurshday','Friday','Saturday','Sunday'])	
+	return render_template('timeFrame.html',head='Hours of operation',title='Change Time Frame',data=gettime(),days=['Monday','Tuesday','Wednesday','Thurshday','Friday','Saturday','Sunday'])	
 
 
 @app.route('/exclude',methods=['GET','POST'])
@@ -104,7 +104,7 @@ def exclude():
 		if data['action'][0] == 'add':
 			additem(data['keyword'][0])
 			chng()
-	return render_template('exclude.html',title='exclude jobs',data=getitems())
+	return render_template('exclude.html',head='job oppurtunity exclusion keywords',title='exclude jobs',data=getitems())
 
 @app.route('/zipgroupadd', methods=['GET','POST'])
 def zipgroupadd():
@@ -116,7 +116,7 @@ def zipgroupadd():
 			addzip(key+'='+zips+'\n')
 			chng()
 		
-	return render_template('zipadd.html',title='Add New Locality',groups=getzipgroups())
+	return render_template('zipadd.html',head='zip code setting',title='Add New Locality',groups=getzipgroups())
 
 @app.route('/selectzip',methods=['GET','POST'])
 def selectzip():
@@ -137,7 +137,7 @@ def selectzip():
 			if(fg=='NO'):
 				setloc([fg])
 				chng()
-	return render_template('zipselect.html',title='Select locality',data=getzipgroups(),loc=getloc())
+	return render_template('zipselect.html',head='Job opportunity neighbourhood',title='Select locality',data=getzipgroups(),loc=getloc())
 
 @app.route('/emailkeyword',methods=['GET','POST'])
 def checkkeyword():
@@ -182,7 +182,7 @@ def checkkeyword():
 			setemkey(fg)
 			chng()
 
-	return render_template('checkkeyword.html',title='Email subject keywords',data=getkeywords(),email=getemail(),subkey=getsubkey(),emkey=getemkey())
+	return render_template('checkkeyword.html',head='Job opportunity subject key word & sender email ID',title='Email subject keywords',data=getkeywords(),email=getemail(),subkey=getsubkey(),emkey=getemkey())
 
 
 @app.route('/emailalert',methods=['GET','POST'])
@@ -204,22 +204,25 @@ def emailalert():
 			else:
 				addalertemail(data['email'][0])
 				chng()
-	return render_template('alert.html',title='Add Email to send email',email=getalertemail())
+	return render_template('alert.html',head='Job accepted alert email',title='Add Email to send email',email=getalertemail())
 
 @app.route('/price',methods=['GET','POST'])
 def price():
 	if request.method=='POST':
 		data=request.form.to_dict(flat=False)
-		try:
-			pri=data['price'][0]
-			if(pri==''):
-				flash('please enter some threshold amount')
-			else:
-				setprice(pri)
-				flash('Changes saved','success')
-		except:
-			flash('please enter correct amount')
-	return render_template('price.html',title='Price Setting Page',loc=chprice())
+		if data['action'][0]=='Submit':
+			try:
+				pri=data['price'][0]
+				if(pri==''):
+					flash('please enter some threshold amount')
+				else:
+					setprice(pri)
+					flash('Changes saved','success')
+			except:
+				flash('please enter correct amount')
+		elif data['action'][0]=='submit':
+			setnoincome(data['optradio'][0])
+	return render_template('price.html',head='Minimum Income',title='Price Setting Page',loc=chprice(),subkey=getnoincome())
 
 @app.route('/joblinktext',methods=['GET','POST'])
 def joblinktext():
@@ -243,7 +246,7 @@ def joblinktext():
 					chng()
 			except:
 				flash('please select keyword from list','error')
-	return render_template('joblinktext.html',title='Job Link keyword',joblinktext=getjoblinktext(),data=getjoblinktextkey())
+	return render_template('joblinktext.html',head='Job Link Keyword ID',title='Job Link keyword',joblinktext=getjoblinktext(),data=getjoblinktextkey())
 
 @app.route('/jobimagelink',methods=['GET','POST'])
 def jobimagetext():
@@ -267,7 +270,7 @@ def jobimagetext():
 					chng()
 			except:
 				flash('please select keyword from list','error')
-	return render_template('jobimagetext.html',title='Job Image Text keyword',joblinktext=getjobimagetext(),data=getjobimagetextkey())
+	return render_template('jobimagetext.html',head='button image link keywords',title='Job Image Text keyword',joblinktext=getjobimagetext(),data=getjobimagetextkey())
 
 @app.route('/jobaccept',methods=['GET','POST'])
 def jobaccept():
@@ -286,7 +289,7 @@ def jobaccept():
 					chng()
 			except:
 				flash('please select keyword from list','error')
-	return render_template('jobaccept.html',title='Job Accepted keyword',data=getjobacceptkey())
+	return render_template('jobaccept.html',head='Job accepted screen keyword ID',title='Job Accepted keyword',data=getjobacceptkey())
 
 
 if __name__ == "__main__": 

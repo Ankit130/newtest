@@ -19,6 +19,14 @@
 						<label class='form-control'>Using Job Image Text Filter - {{ joblinktext }}</label>
 					</div>
 				</div>
+				<label >Add Job Image keyword</label>
+				<div class="form-group">
+					<input type ="text" class='form-control' name='keyword'>
+				</div>
+				<div class="form-group">
+					<input type ="submit" name="action" value="Add" class="btn btn-outline-info">
+				</div>
+				<label class='form-control'>All keywords- {{ ','.join(data) }} </label>
 				<legend class="border-bottom mb-4">Job link Image keywords</legend>
 				<div class="form-group">
 				<select class="form-control" name="listitem">
@@ -31,12 +39,7 @@
 				<div class="form-group">
 					<input type ="submit" name="action" value="Delete" class="btn btn-outline-info">
 				</div>
-				<div class="form-group">
-					<input type ="text" class='form-control' name='keyword'>
-				</div>
-				<div class="form-group">
-					<input type ="submit" name="action" value="Add" class="btn btn-outline-info">
-				</div>
+				
 			</fieldset>
 		</form>
 	</div>

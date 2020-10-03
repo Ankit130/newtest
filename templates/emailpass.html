@@ -32,7 +32,12 @@
 					<label class='form-control'>Current Email - {{ email_pass['email'] }}</label>
 				</div>
 				<div class="form-group">
-					<label class='form-control'>Current Password - {{ email_pass['pass'] }}</label>
+					<div class="input-group" id="show_hide_password">
+      						
+      						<input class="form-control" type="password" value="{{ email_pass['pass'] }}" name="txt_password" onmouseover="this.type='text'"
+       onmouseout="this.type='password'" placeholder="password" />
+    				</div>
+					
 				</div>
 				<div class="form-group">
 					<label class='form-control'>Current IMAP Server - {{ email_pass['imap_url'] }}</label>
@@ -47,6 +52,5 @@
 		</form>
 	</div>
 </div>
-
 {% endblock content%}
 	

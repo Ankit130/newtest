@@ -334,3 +334,12 @@ def deljobacceptkey(val):
 				continue
 			else:
 				f.write(d+'\n')
+
+def setnoincome(val):
+	with open('noincome.txt','w') as f:
+		f.write(val)
+
+def getnoincome():
+	with open('noincome.txt','r') as f:
+		data=f.read()
+	return data

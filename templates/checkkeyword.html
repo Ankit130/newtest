@@ -20,6 +20,16 @@
 				</div>
 				<legend class="border-bottom mb-4">Check Following keywords in Emails subject</legend>
 				<div class="form-group">
+					<input type ="text" class='form-control' name='keyword'>
+				</div>
+				<div class="form-group">
+					<input type ="submit" name="action" value="Add" class="btn btn-outline-info">
+				</div>
+				<div class="form-group">
+					<label > All Added Subject Keywords </label>
+					<label class='form-control'>{{ ','.join(data) }} </label>
+				</div>
+				<div class="form-group">
 				<select class="form-control" name="listitem">
 					<option disabled selected value> -- select keyword to delete -- </option>
 					{% for d in data %}
@@ -29,12 +39,6 @@
 				</div>
 				<div class="form-group">
 					<input type ="submit" name="action" value="Delete" class="btn btn-outline-info">
-				</div>
-				<div class="form-group">
-					<input type ="text" class='form-control' name='keyword'>
-				</div>
-				<div class="form-group">
-					<input type ="submit" name="action" value="Add" class="btn btn-outline-info">
 				</div>
 				<legend class="border-bottom mb-4">Use Sender Emails keyword Filter?</legend>
 				<div class="form-group">
@@ -48,7 +52,15 @@
 				<div class ="form-group">
 					<label class='form-control'>Using Sender Emails keyword Filter - {{ emkey }}</label>
 				</div>
+				<div class="form-group">
+					<label for="email" >Email</label>
+					<input type ="email" class='form-control' id='email' name='email'>
+				</div>
+				<div class="form-group">
+					<input type ="submit" name="action" value="Add email" class="btn btn-outline-info">
+				</div>
 				<legend class="border-bottom mb-4">Sender Emails List</legend>
+				<label class='form-control'>{{ ','.join(email) }} </label>
 				<div class="form-group">
 				<select class="form-control" name="listitem1">
 					<option disabled selected value> -- select email to delete -- </option>
@@ -60,13 +72,7 @@
 				<div class="form-group">
 					<input type ="submit" name="action" value="Delete Email" class="btn btn-outline-info">
 				</div>
-				<div class="form-group">
-					<label for="email" >Email</label>
-					<input type ="email" class='form-control' id='email' name='email'>
-				</div>
-				<div class="form-group">
-					<input type ="submit" name="action" value="Add email" class="btn btn-outline-info">
-				</div>
+				
 
 			</fieldset>
 		</form>
