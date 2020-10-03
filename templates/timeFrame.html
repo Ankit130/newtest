@@ -6,18 +6,8 @@
 		<form method="POST" action=''>
 			<br>
 			<fieldset class="form-group">
+				
 				<legend class="border-bottom mb-1">Select Time Frame</legend>
-				<div class="form-group">
-					<select class="form-control" name="listitem">
-					<option disabled selected value> -- select time frame to delete -- </option>
-					{% for d in data %}
-					<option value="{{ d }}">{{ d[0] }} from {{ d[1] }} to {{ d[2] }}</option>
-					{% endfor %}
-				</select>
-				</div>
-				<div class="form-group">
-					<input type ="submit" name="action" value="Delete" class="btn btn-outline-info">
-				</div>
 				<div class="form-group">
 					<select class="form-control" name="days">
 					<option disabled selected value> -- select a day -- </option>
@@ -26,7 +16,6 @@
 					{% endfor %}
 				</select>
 				</div>
-
 				<div class="form-group">
 					<label for="start_time">Start Time </label>
 					<input type="time" class="form-control" id = "start_time" name="start_time" />
@@ -38,10 +27,19 @@
 				<div class="form-group">
 					<input type ="submit" name="action" value="Submit" class="btn btn-outline-info">
 				</div>
-				
+				<legend class="border-bottom mb-1">Select Time Frame To delete</legend>
 				<div class="form-group">
-					<input type ="submit" name="action" value="Click here to accept job always" class="btn btn-outline-info">
+					<select class="form-control" name="listitem">
+					<option disabled selected value> -- select time frame to delete -- </option>
+					{% for d in data %}
+					<option value="{{ d }}">{{ d[0] }} from {{ d[1] }} to {{ d[2] }}</option>
+					{% endfor %}
+				</select>
 				</div>
+				<div class="form-group">
+					<input type ="submit" name="action" value="Delete" class="btn btn-outline-info">
+				</div>
+				
 			</fieldset>
 		</form>
 	</div>
