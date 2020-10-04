@@ -27,6 +27,16 @@
 				<div class="form-group">
 					<input type ="submit" name="action" value="Submit" class="btn btn-outline-info">
 				</div>
+				<div class="form-group">
+					<label > All Time Frame </label>
+					<br>
+					{% for d in data %}
+						<label class='form-control'>
+						{{ d[0] }} from {{ d[1] }} to {{ d[2] }}
+						</label>
+					{% endfor %}
+				
+				</div>
 				<legend class="border-bottom mb-1">Select Time Frame To delete</legend>
 				<div class="form-group">
 					<select class="form-control" name="listitem">
@@ -41,16 +51,7 @@
 					<input type ="submit" name="action" value="Delete" class="btn btn-outline-info">
 				</div>
 				
-				<div class="form-group">
-					<label > All Time Frame </label>
-					<br>
-					{% for d in data %}
-						<label class='form-control'>
-						{{ d[0] }} from {{ d[1] }} to {{ d[2] }}
-						</label>
-					{% endfor %}
 				
-				</div>
 			</fieldset>
 		</form>
 	</div>

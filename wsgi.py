@@ -3,7 +3,7 @@ from functions import *
 from forms import Emailpass,TurnOnOff,TimeFrame
 #from functions import getitems,delt,additem,getzipgroups,addzip,getloc,setloc,getkeywords,deletekeyword,addkeyword
 
-app=Flask(__name__)
+app=Flask(__name__,static_folder='/static')
 app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
 
 @app.route('/',methods=['GET','POST'])
@@ -270,7 +270,7 @@ def jobimagetext():
 					chng()
 			except:
 				flash('please select keyword from list','error')
-	return render_template('jobimagetext.html',head='button image link keywords',title='Job Image Text keyword',joblinktext=getjobimagetext(),data=getjobimagetextkey())
+	return render_template('jobimagetext.html',head='button image link',title='Job Image Text keyword',joblinktext=getjobimagetext(),data=getjobimagetextkey())
 
 @app.route('/jobaccept',methods=['GET','POST'])
 def jobaccept():

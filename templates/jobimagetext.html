@@ -5,7 +5,7 @@
 		<form method="POST" action=''>
 			<br>
 			<fieldset class="form-group">
-				<legend class="border-bottom mb-4">Use Job Image Text Filter?</legend>
+				<legend class="border-bottom mb-4">Use Accept button Image link Filter?</legend>
 				<div class="form-group">
 					<div class="form-group">
 						  <input class="form-control-label" type="radio" name="optradio" value='YES' checked> Yes
@@ -16,21 +16,21 @@
 						<input type ="submit" name="action" value="Submit" class="btn btn-outline-info">
 					</div>
 					<div class ="form-group">
-						<label class='form-control'>Using Job Image Text Filter - {{ joblinktext }}</label>
+						<label class='form-control'>Using Accept button Image link Filter - {{ joblinktext }}</label>
 					</div>
 				</div>
-				<label >Add Job Image keyword</label>
+				<label >Add Accept button Image link</label>
 				<div class="form-group">
 					<input type ="text" class='form-control' name='keyword'>
 				</div>
 				<div class="form-group">
 					<input type ="submit" name="action" value="Add" class="btn btn-outline-info">
 				</div>
-				<label class='form-control'>All keywords- {{ ','.join(data) }} </label>
-				<legend class="border-bottom mb-4">Job link Image keywords</legend>
+				<label class='form-control'>All links- {{ ','.join(data) }} </label>
+				<legend class="border-bottom mb-4">Accept button Image links</legend>
 				<div class="form-group">
 				<select class="form-control" name="listitem">
-					<option disabled selected value> -- select keyword to delete -- </option>
+					<option disabled selected value> -- select links to delete -- </option>
 					{% for d in data %}
 					<option value="{{ d }}">{{ d }}</option>
 					{% endfor %}
@@ -43,5 +43,8 @@
 			</fieldset>
 		</form>
 	</div>
+</div>
+<div class="container">
+<a href="https://ibb.co/mDpw4Cz"><img src="https://i.ibb.co/qy6fpM1/button-link.png" alt="button-link" border="0"></a>
 </div>
 {% endblock content%}

@@ -1,1 +1,1 @@
-yii
+https://s3.amazonaws.com/keyme/email_assets/locksmith_job/accept.png
